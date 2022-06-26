@@ -1,5 +1,9 @@
 const bookShelf = document.querySelector(".book-shelf");
-const addBook = document.querySelector(".add-book");
+const openModal = document.querySelector("#modal-button");
+const modalBg = document.querySelector(".modal-bg")
+const modalActive = document.querySelector(".modal-active");
+const modalClose = document.querySelector(".modal-close");
+
 
 let myLibrary = [];
 
@@ -50,6 +54,16 @@ for (let i = 0; i < myLibrary.length; i++) {
     bookCard.appendChild(readButton);
     bookCard.appendChild(removeButton);
 }
+
+modalClose.addEventListener("click", () => {
+    modalBg.classList.remove("modal-bg-active");
+});
+
+openModal.addEventListener("click", () => {
+    modalBg.classList.add("modal-bg-active");
+});
+
+
 
 
 

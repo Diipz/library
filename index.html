@@ -17,11 +17,27 @@
         </svg>
     </div>
     <div class="add-book">
-        <button>+ Add book</button>
+        <button id="modal-button">+ Add book</button>
     </div>
-    <div class="book-shelf">
+    <div class="book-shelf"></div>
+    <div class="modal-bg">
+        <form id="add-book-modal">
+            <h3>Add new book</h3>
+            <input class="input" type="text" id="title" placeholder="Title" required maxlength="100">
+            <input class="input" type="text" id="author" placeholder="Author" required maxlength="100">
+            <input class="input" type="number" id="pages" placeholder="Pages" required max="10000">
+            <div class="is-read">
+                <label for="is-read">Have you read it?</label>
+                <input class="checkbox" type="checkbox" id="isRead" />
+            </div>
+            <button class="btn green" type="submit">Submit</button>
+            <span class="modal-close">X</span>
+        </form>
+    </div>
 
-    </div>
+
+
+
 
     <script src="main.js"></script>
 </body>
