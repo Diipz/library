@@ -60,6 +60,7 @@ button {
 .book-card button {
     margin: 0;
     padding: 0;
+    cursor: pointer;
 }
 
 .book-card .bold {
@@ -72,7 +73,7 @@ button {
     background-color: lightgreen;
 }
 
-.book-card .not-read {
+.read.red {
     background-color: lightcoral;
 }
 

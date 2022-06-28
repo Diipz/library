@@ -5,7 +5,6 @@ const modalActive = document.querySelector(".modal-active");
 const modalClose = document.querySelector(".modal-close");
 const submitBook = document.querySelector("#submitBtn")
 
-
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -25,6 +24,7 @@ function createLibrary() {
     let newNode = document.querySelector(".book-shelf");
     newNode.textContent = "";
 
+
     for (let i = 0; i < myLibrary.length; i++) {
         let bookCard = document.createElement("div");
         bookCard.classList.add("book-card");
@@ -42,14 +42,38 @@ function createLibrary() {
         removeButton.classList.add("remove");
         removeButton.textContent = "Remove"
         let readButton = document.createElement("button");
-        myLibrary[i].read = myLibrary[i].read.replace(/\s+/g, "").toUpperCase();
+
+        removeButton.addEventListener("click", () => {
+            myLibrary.splice(i, 1);
+            createLibrary();
+        });
+
         if (myLibrary[i].read === "READ") {
             readButton.classList.add("read");
             readButton.textContent = "Read"
+            readButton.addEventListener("click", () => {
+                readButton.classList.toggle("red");
+                if (readButton.textContent === "Read") {
+                    readButton.textContent = "Not read"
+                }
+                else {
+                    readButton.textContent = "Read"
+                }
+            });
         }
         else {
-            readButton.classList.add("not-read");
+            readButton.classList.add("read");
+            readButton.classList.add("red");
             readButton.textContent = "Not read"
+            readButton.addEventListener("click", () => {
+                readButton.classList.toggle("red");
+                if (readButton.textContent === "Not read") {
+                    readButton.textContent = "Read"
+                }
+                else {
+                    readButton.textContent = "Not read"
+                }
+            });
         }
 
         bookCard.appendChild(title);
@@ -76,7 +100,7 @@ submitBook.addEventListener("click", function () {
     let checkbox = document.getElementById("isRead");
 
     if (checkbox.checked) {
-        var read = "read";
+        var read = "READ";
     }
     else {
         var read = "not read";
@@ -86,9 +110,4 @@ submitBook.addEventListener("click", function () {
     document.getElementById("add-book-modal").reset();
     modalBg.classList.remove("modal-bg-active");
 });
-
-
-
-
-
 
