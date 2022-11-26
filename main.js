@@ -3,7 +3,11 @@ const openModal = document.querySelector("#modal-button");
 const modalBg = document.querySelector(".modal-bg")
 const modalActive = document.querySelector(".modal-active");
 const modalClose = document.querySelector(".modal-close");
-const submitBook = document.querySelector("#submitBtn")
+const submitBook = document.querySelector("#submitBtn");
+const nameInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+
 
 let myLibrary = [];
 
@@ -94,6 +98,13 @@ openModal.addEventListener("click", () => {
 });
 
 submitBook.addEventListener("click", function () {
+
+    if (!nameInput.checkValidity() || !authorInput.checkValidity() || !pagesInput.checkValidity()) {
+        return;
+    }
+
+
+
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
     let pages = document.getElementById("pages").value;
@@ -110,4 +121,49 @@ submitBook.addEventListener("click", function () {
     document.getElementById("add-book-modal").reset();
     modalBg.classList.remove("modal-bg-active");
 });
+
+
+//contraint validation API for add book modal
+
+nameInput.addEventListener("input", () => {
+    nameInput.setCustomValidity("");
+    nameInput.checkValidity();
+});
+
+nameInput.addEventListener("invalid", () => {
+    if (nameInput.value === "") {
+        nameInput.setCustomValidity("Enter title of book");
+    }
+});
+
+authorInput.addEventListener("input", () => {
+    authorInput.setCustomValidity("");
+    authorInput.checkValidity();
+});
+
+authorInput.addEventListener("invalid", () => {
+    if (authorInput.value === "") {
+        authorInput.setCustomValidity("Enter author of book");
+    }
+});
+
+pagesInput.addEventListener("input", () => {
+    pagesInput.setCustomValidity("");
+    pagesInput.checkValidity();
+});
+
+pagesInput.addEventListener("invalid", () => {
+    if (pagesInput.value == 0) {
+        pagesInput.setCustomValidity("A book with no pages??");
+    }
+    else if (nameInput.value.length > 9999) {
+        pagesInput.setCustomValidity("Enter a number less than 9999");
+    }
+    else {
+        pagesInput.setCustomValidity("Enter a number from 1-9999");
+    }
+});
+
+
+
 
